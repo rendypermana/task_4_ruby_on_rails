@@ -1,0 +1,37 @@
+<!-- Page Heading -->
+<div class="row" style="padding-top: 20px">
+    <div class="col-lg-12">
+        <h1 class="page-header">Image Gallery</h1>
+    </div>
+</div>
+<!-- /.row -->
+		<% if !flash[:notice].blank? %>
+		   <div class = "alert alert-info">
+		      <%= flash[:notice] %>
+		   </div>
+		<% end %>
+
+		<br />
+
+		<%= link_to "New Image", new_resume_path, class: "btn btn-primary" %>
+		<br />
+		<br />
+<% @resumes.each do |resume| %>
+<div class="col-sm-6 col-md-3">
+  	<div class="thumbnail masonry">
+    	<img src="<%= resume.attachment %>">
+    	<div class="caption">
+      		<h3><%= resume.name %></h3>
+      		<div class="tombol">
+      			<ul>
+
+	      		<li><%= link_to "<button class='btn btn-warning'>Edit</button>".html_safe,  edit_resume_path(resume.id), data: {confirm: 'Aslina deuk di edit?'} %></li> 
+
+	      		<li><%= button_to "Delete",  resume, method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure that you wish to delete?'} %></li>
+	      		<ul>
+	      	</div>
+    	</div>
+  	</div> 	
+</div>  
+<% end %>
+
